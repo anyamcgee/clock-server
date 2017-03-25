@@ -1,1 +1,1 @@
-web: gunicorn clock:main
+web: gunicorn -w 4 clock:app
