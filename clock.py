@@ -1,7 +1,20 @@
-def app(environ, start_response):
-        data = b"Hello, World!\n"
-        start_response("200 OK", [
-            ("Content-Type", "text/plain"),
-            ("Content-Length", str(len(data)))
-        ])
-        return iter([data])
+from flask import Flask
+from flask import request
+app = Flask(__name__)
+
+locations = [1,2,3]
+
+@app.route('/')
+def hello_world():
+    return 'you have reached anya\'s clock'
+
+@app.route('/get')
+def get_location():
+    return str(locations[0]) + str(locations[1]) + str(locations[2])
+
+@app.route('/post', methods=['POST'])
+def post():
+	data = request.get_json()
+	if data["user"] <= 2 and data["user"] >= 0:
+		locations[data["user"]] = data["location"]
+	return str(locations)
