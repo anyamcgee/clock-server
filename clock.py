@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-locations = [1,2,3]
+locations = [1,1,3]
 
 @app.route('/')
 def hello_world():
